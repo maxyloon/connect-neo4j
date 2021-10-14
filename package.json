@@ -1,0 +1,25 @@
+{
+  "name": "connect-neo4j",
+  "version": "1.0.0",
+  "description": "Neo4j Session store",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape tests/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/MaxAndersson/connect-neo4j.git"
+  },
+  "keywords": [
+    "express",
+    "session",
+    "store",
+    "neo4j"
+  ],
+  "author": "Max Andersson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MaxAndersson/connect-neo4j/issues"
+  },
+  "homepage": "https://github.com/MaxAndersson/connect-neo4j#readme"
+}
