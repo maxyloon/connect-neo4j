@@ -6,7 +6,7 @@ const user = process.env.NEO4J_USER || 'neo4j'
 const password = process.env.NEO4J_PASSWORD || 'neo4j'
 const driver = neo4j.driver(uri, neo4j.auth.basic(user, password))
 
-let Neo4jStore = require('../')(session);
+let Neo4jStore = require('../lib/connect-neo4j')(session);
 
 let p =
   (ctx, method) =>
@@ -17,7 +17,9 @@ let p =
         resolve(d)
       })
     })
-test('setup', console.log('setup'))
+test('setup', async (t) => {
+    t.ok(true);
+})
 
 test('defaults', async (t) => {
   t.throws(() => new Neo4jStore(), 'client is required')
@@ -37,7 +39,7 @@ test('defaults', async (t) => {
 
 test('node_neo4j', async (t) => {
   var client = driver.session()
-  var store = new RedisStore({ client })
+  var store = new Neo4jStore({ client })
   await lifecycleTest(store, t)
   client.close()
 })
