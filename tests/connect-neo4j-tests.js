@@ -1,4 +1,4 @@
-const test = require('blue-tape');
+const test = require('tape');
 const session = require('express-session');
 const neo4j = require('neo4j-driver')
 const uri = process.env.NEO4J_URI || 'bolt://localhost:7687'
@@ -18,50 +18,55 @@ let p =
       })
     })
 test('setup', async (t) => {
-    t.ok(true);
+    var client = driver.session()
+    var store = new Neo4jStore({ client })
+    let res = await p(store, 'clear')()
+    t.ok(res = true, 'clear sessions')  
 })
 
 test('defaults', async (t) => {
   t.throws(() => new Neo4jStore(), 'client is required')
-
   var client = driver.session()
   var store = new Neo4jStore({ client })
-
   t.equal(store.client, client, 'stores client')
   t.equal(store.prefix, 'sess:', 'defaults to sess:')
-  t.equal(store.ttl, 86400, 'defaults to one day')
+  t.equal(store._ttl, 86400, 'defaults to one day')
   t.equal(store.scanCount, 100, 'defaults SCAN count to 100')
   t.equal(store.serializer, JSON, 'defaults to JSON serialization')
   t.equal(store.disableTouch, false, 'defaults to having `touch` enabled')
   t.equal(store.disableTTL, false, 'defaults to having `ttl` enabled')
-  client.close()
 })
 
 test('node_neo4j', async (t) => {
+  t.plan(20)
   var client = driver.session()
   var store = new Neo4jStore({ client })
   await lifecycleTest(store, t)
   client.close()
+
+  t.end()
 })
 
-
-
-    async function lifecycleTest(store, t) {
+test.onFinish(() => {
+  driver.close();
+  process.exit(0);
+})
+async function lifecycleTest(store, t) {
         let res = await p(store, 'set')('123', { foo: 'bar' })
         t.equal(res, 'OK', 'set value')
       
         res = await p(store, 'get')('123')
         t.same(res, { foo: 'bar' }, 'get value')
       
-        res = await p(store.client, 'ttl')('sess:123')
-        t.ok(res >= 86399, 'check one day ttl')
+        res = await p(store, 'ttl')('123')
+        t.ok(res >= 86300 && res < 86400, 'check one day ttl')
       
         let ttl = 60
         let expires = new Date(Date.now() + ttl * 1000).toISOString()
         res = await p(store, 'set')('456', { cookie: { expires } })
         t.equal(res, 'OK', 'set cookie expires')
       
-        res = await p(store.client, 'ttl')('sess:456')
+        res = await p(store, 'ttl')('456')
         t.ok(res <= 60, 'check expires ttl')
       
         ttl = 90
@@ -69,7 +74,7 @@ test('node_neo4j', async (t) => {
         res = await p(store, 'touch')('456', { cookie: { expires: newExpires } })
         t.equal(res, 'OK', 'set cookie expires touch')
       
-        res = await p(store.client, 'ttl')('sess:456')
+        res = await p(store, 'ttl')('456')
         t.ok(res > 60, 'check expires ttl touch')
       
         res = await p(store, 'length')()
@@ -124,6 +129,7 @@ test('node_neo4j', async (t) => {
       
         res = await p(store, 'length')()
         t.equal(res, 0, 'no key remains and that includes session 789')
+        return
       }
       
       function load(store, count) {
@@ -151,3 +157,4 @@ test('node_neo4j', async (t) => {
           set(1)
         })
       }
+    

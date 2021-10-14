@@ -23,8 +23,8 @@
   },
   "homepage": "https://github.com/MaxAndersson/connect-neo4j#readme",
   "dependencies": {
-    "blue-tape": "^1.0.0",
     "express-session": "^1.17.2",
-    "neo4j-driver": "^4.3.3"
+    "neo4j-driver": "^4.3.3",
+    "tape": "^5.3.1"
   }
 }
