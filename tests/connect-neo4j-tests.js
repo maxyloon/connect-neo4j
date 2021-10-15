@@ -18,17 +18,16 @@ let p =
       })
     })
 test('setup', async (t) => {
-  var client = driver.session()
-  var store = new Neo4jStore({ client })
+
+  var store = new Neo4jStore({ client: driver })
   let res = await p(store, 'clear')()
   t.ok((res = true), 'clear sessions')
 })
 
 test('defaults', async (t) => {
   t.throws(() => new Neo4jStore(), 'client is required')
-  var client = driver.session()
-  var store = new Neo4jStore({ client })
-  t.equal(store.client, client, 'stores client')
+  var store = new Neo4jStore({ client: driver })
+  t.equal(store.client, driver, 'stores client')
   t.equal(store.prefix, 'sess:', 'defaults to sess:')
   t.equal(store._ttl, 86400, 'defaults to one day')
   t.equal(store.serializer, JSON, 'defaults to JSON serialization')
@@ -38,11 +37,8 @@ test('defaults', async (t) => {
 
 test('node_neo4j', async (t) => {
   t.plan(20)
-  var client = driver.session()
-  var store = new Neo4jStore({ client })
+  var store = new Neo4jStore({ client: driver })
   await lifecycleTest(store, t)
-  client.close()
-
   t.end()
 })
 
