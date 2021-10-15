@@ -31,7 +31,6 @@ test('defaults', async (t) => {
   t.equal(store.client, client, 'stores client')
   t.equal(store.prefix, 'sess:', 'defaults to sess:')
   t.equal(store._ttl, 86400, 'defaults to one day')
-  t.equal(store.scanCount, 100, 'defaults SCAN count to 100')
   t.equal(store.serializer, JSON, 'defaults to JSON serialization')
   t.equal(store.disableTouch, false, 'defaults to having `touch` enabled')
   t.equal(store.disableTTL, false, 'defaults to having `ttl` enabled')

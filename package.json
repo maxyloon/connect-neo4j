@@ -1,5 +1,5 @@
 {
-  "name": "connect-neo4j",
+  "name": "@maxyloon/connect-neo4j",
   "version": "1.0.0",
   "description": "Neo4j Session store",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/MaxAndersson/connect-neo4j.git"
+    "url": "github.com/MaxAndersson/connect-neo4j"
   },
   "keywords": [
     "express",
@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/MaxAndersson/connect-neo4j#readme",
   "dependencies": {
+  },
+  "devDependencies": {
     "express-session": "^1.17.2",
     "neo4j-driver": "^4.3.3",
     "tape": "^5.3.1"
