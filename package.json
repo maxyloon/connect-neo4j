@@ -1,5 +1,5 @@
 {
-  "name": "@maxyloon/connect-neo4j",
+  "name": "connect-neo4j",
   "version": "1.0.0",
   "description": "Neo4j Session store",
   "main": "index.js",
