@@ -1,0 +1,1 @@
+module.exports = require('./lib/connect-neo4j')
