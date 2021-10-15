@@ -1,6 +1,6 @@
 [![npm](https://img.shields.io/npm/v/connect-neo4j.svg)](https://npmjs.com/package/connect-neo4j) [![code-style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://gitter.im/jlongster/prettier) ![Downloads](https://img.shields.io/npm/dm/connect-neo4j.svg)
 
-![connect-neo4j](connect-neo4j.png)
+![connect-neo4j](https://github.com/MaxAndersson/connect-neo4j/blob/8006bc2fe81cadaf683a13947da0a6cd3c8adc9d/connect-neo4j.png)
 
 **connect-neo4j** provides Neo4j session storage for Express. Requires neo4j-driver >= `4.3.0`.
 
