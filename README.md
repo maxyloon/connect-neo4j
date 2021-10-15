@@ -51,11 +51,11 @@ The `Neo4jStore` requires an existing client. Any clients compatible with the AP
 let options = { // Defaults (excluding client)
         prefix: "sess:", //optional
         serializer: JSON, // optional, but must provide methods parse & stringify
-        client: driver.session() // required
-        nodeLabel: 'Session' //Optional, what to label you session nodes
-        ttl: 86400 // Optional, set a default ttl (time to live).
-        disableTTL: false //Optional, Disables TTL functionallity
-        disableTouch: false // Optional, Disables Touch functionallty
+        client: driver, // required, neo4j-driver
+        nodeLabel: 'Session', //Optional, what to label you session nodes
+        ttl: 86400, // Optional, set a default ttl (time to live).
+        disableTTL: false, //Optional, Disables TTL functionallity
+        disableTouch: false, // Optional, Disables Touch functionallty
 }
 
 let store = new Neo4jStore({ options ) })
