@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/MaxAndersson/connect-neo4j#readme",
   "dependencies": {
+    "connect-neo4j": "https://github.com/MaxAndersson/connect-neo4j/releases/download/1.0.0/connect-neo4j-1.0.0.tgz"
   },
   "devDependencies": {
     "express-session": "^1.17.2",
