@@ -28,9 +28,8 @@ const uri = process.env.NEO4J_URI || 'bolt://localhost:7687'
 const user = process.env.NEO4J_USER || 'neo4j'
 const password = process.env.NEO4J_PASSWORD || 'neo4j'
 const driver = neo4j.driver(uri, neo4j.auth.basic(user, password))
-
+var app = express()
 let Neo4jStore = require('connect-neo4j')(session)
-
 app.use(
   session({
     store: new Neo4jStore({ client: driver }),
@@ -39,6 +38,7 @@ app.use(
     resave: false,
   })
 )
+app.listen(3000)
 ```
 
 ### Neo4jStore(options)

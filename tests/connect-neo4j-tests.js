@@ -18,7 +18,6 @@ let p =
       })
     })
 test('setup', async (t) => {
-
   var store = new Neo4jStore({ client: driver })
   let res = await p(store, 'clear')()
   t.ok((res = true), 'clear sessions')
