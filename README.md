@@ -43,7 +43,7 @@ app.listen(3000)
 
 ### Neo4jStore(options)
 
-The `Neo4jStore` requires an existing Redis client. Any clients compatible with the [`redis`][1] API will work. See `client` option for more details.
+The `Neo4jStore` requires an existing client. Any clients compatible with the [ API will work. See `client` option for more details.
 
 #### Options
 
