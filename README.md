@@ -9,18 +9,19 @@
 npm:
 
 ```sh
-npm install neo4j-driver connect-neo4j express-session
+npm install neo4j-driver connect-neo4j express-session express
 ```
 
 Yarn:
 
 ```sh
-yarn add neo4j-driver connect-neo4j express-session
+yarn add neo4j-driver connect-neo4j express-session express
 ```
 
 ## API
 
 ```js
+const express = require('express')
 const session = require('express-session')
 const neo4j = require('neo4j-driver')
 const uri = process.env.NEO4J_URI || 'bolt://localhost:7687'
@@ -28,11 +29,11 @@ const user = process.env.NEO4J_USER || 'neo4j'
 const password = process.env.NEO4J_PASSWORD || 'neo4j'
 const driver = neo4j.driver(uri, neo4j.auth.basic(user, password))
 
-let Neo4jStore = require('../lib/connect-neo4j')(session)
+let Neo4jStore = require('connect-neo4j')(session)
 
 app.use(
   session({
-    store: new Neo4jStore({ client: driver.session() }),
+    store: new Neo4jStore({ client: driver }),
     saveUninitialized: false,
     secret: 'keyboard cat',
     resave: false,
@@ -42,7 +43,7 @@ app.use(
 
 ### Neo4jStore(options)
 
-The `Neo4jStore` requires an existing neo4j-driver session. Any clients compatible with the API will work. See `client` option for more details.
+The `Neo4jStore` requires an existing Redis client. Any clients compatible with the [`redis`][1] API will work. See `client` option for more details.
 
 #### Options
 
@@ -50,11 +51,11 @@ The `Neo4jStore` requires an existing neo4j-driver session. Any clients compatib
 let options = { // Defaults (excluding client)
         prefix: "sess:", //optional
         serializer: JSON, // optional, but must provide methods parse & stringify
-        client: driver.session(), // required
-        nodeLabel: 'Session', //Optional, what to label you session nodes
-        ttl: 86400, // Optional, set a default ttl (time to live).
-        disableTTL: false, //Optional, Disables TTL functionallity
-        disableTouch: false, // Optional, Disables Touch functionallty
+        client: driver.session() // required
+        nodeLabel: 'Session' //Optional, what to label you session nodes
+        ttl: 86400 // Optional, set a default ttl (time to live).
+        disableTTL: false //Optional, Disables TTL functionallity
+        disableTouch: false // Optional, Disables Touch functionallty
 }
 
 let store = new Neo4jStore({ options ) })

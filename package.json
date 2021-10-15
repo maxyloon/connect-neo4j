@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "github.com/MaxAndersson/connect-neo4j"
+    "url": "git@github.com:MaxAndersson/connect-neo4j.git"
   },
   "keywords": [
     "express",
