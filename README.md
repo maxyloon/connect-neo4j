@@ -42,7 +42,7 @@ app.use(
 
 ### Neo4jStore(options)
 
-The `Neo4jStore` requires an existing Redis client. Any clients compatible with the [`redis`][1] API will work. See `client` option for more details.
+The `Neo4jStore` requires an existing neo4j-driver session. Any clients compatible with the API will work. See `client` option for more details.
 
 #### Options
 
