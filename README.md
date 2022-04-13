@@ -56,6 +56,11 @@ let options = { // Defaults (excluding client)
         ttl: 86400, // Optional, set a default ttl (time to live).
         disableTTL: false, //Optional, Disables TTL functionallity
         disableTouch: false, // Optional, Disables Touch functionallty
+        user:{ //Optional, Links newly created session node to another node within neo4j
+                label: "User", //Required, label of the node to be matched
+                idProperty: "username", //Required, property for linking user node, data should be supplied under the same key in session object
+                relationshipType: "has_session" //Optional, label the created relationship will take
+        }
 }
 
 let store = new Neo4jStore({ options ) })
