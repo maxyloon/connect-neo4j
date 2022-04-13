@@ -63,7 +63,7 @@ let options = { // Defaults (excluding client)
         }
 }
 
-let store = new Neo4jStore({ options ) })
+let store = new Neo4jStore({ options })
 
 ```
 
