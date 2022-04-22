@@ -1,6 +1,6 @@
 {
   "name": "connect-neo4j-user",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Neo4j Session store - with user connectivity",
   "main": "index.js",
   "scripts": {
@@ -22,9 +22,6 @@
     "url": "https://github.com/darkmattur/connect-neo4j/issues"
   },
   "homepage": "https://github.com/darkmattur/connect-neo4j#readme",
-  "dependencies": {
-    "connect-neo4j": "https://github.com/MaxAndersson/connect-neo4j/releases/download/1.0.0/connect-neo4j-1.0.0.tgz"
-  },
   "devDependencies": {
     "express-session": "^1.17.2",
     "neo4j-driver": "^4.3.3",
